@@ -81,14 +81,11 @@ namespace BasicWebServer.Server.HTTP
                     break;
                 }
 
-                var headerParts = headerLine.Split(":");
+                var headerParts = headerLine.Split(":", 2);
 
                 if (headerParts.Length != 2)
                 {
-                    if (!(headerLine == "Origin: http://localhost:8080" || headerLine == "Referer: http://localhost:8080/HTML"))
-                    {
-                        throw new InvalidOperationException("Request is not valid.");
-                    }
+                    throw new InvalidOperationException("Request is not valid.");
                 }
 
                 var headerName = headerParts[0];
